@@ -1,5 +1,5 @@
 # Second Script: AD_Semantic_Similarity (Pathway and metrices using Semantic Similarity) 
-# by Eugenio Del Prete
+# by Utpala Nanda Chowdhury
 
 # 1. Set your work folder
 setwd(".../workfolder")
