@@ -60,7 +60,7 @@ AD_GOdata <- new("topGOdata",
                  annot = annFUN.org, 
                  ID = "symbol", 
                  mapping = "org.Hs.eg.db",
-                 nodeSize = 5)
+                 nodeSize = 10)
 
 # 10. Show genes and GO terms
 n_sg <- sum(topDiffGenes(geneList))
@@ -71,6 +71,7 @@ write.csv(ug,"GO_GSE1297.csv")
 # 11. Perform Fisher's Exact Test (and Kolmogorov-Smirnov for evaluation, not described)
 resultFisher <- runTest(AD_GOdata, algorithm = "classic", statistic = "fisher")
 resultKS <- runTest(AD_GOdata, algorithm = "classic", statistic = "ks")
+resultKS.elim <- runTest(AD_GOdata, algorithm = "elim", statistic = "ks")
 
 # 12. Compare the tests (not described)
 #pvalFis <- score(resultFisher)
@@ -79,7 +80,7 @@ resultKS <- runTest(AD_GOdata, algorithm = "classic", statistic = "ks")
 
 # 13. Create GO terms tree
 allRes <- GenTable(AD_GOdata, classic = resultFisher, KS = resultKS, orderBy = "classic", topNodes = 30)
-showSigOfNodes(AD_GOdata,score(resultFisher),firstSigNodes = 5, useInfo = "all")
+showSigOfNodes(AD_GOdata,score(resultKS.elim),firstSigNodes = 5, useInfo = "all")
 printGraph(AD_GOdata,resultFisher,firstSigNodes = 5, fn.prefix = "AD1_GSE1297", useInfo = "all", pdfSW = TRUE)
 
 # 14. Create text file for the correspondence GO terms - genes (this file is mandatory for the script two)
@@ -151,7 +152,7 @@ AD_GOdata <- new("topGOdata",
                  annot = annFUN.org, 
                  ID = "symbol", 
                  mapping = "org.Hs.eg.db",
-                 nodeSize = 5)
+                 nodeSize = 10)
 
 # 10. Show genes and GO terms
 n_sg <- sum(topDiffGenes(geneList))
@@ -162,6 +163,7 @@ write.csv(ug,"GO_GSE110226.csv")
 # 11. Perform Fisher's Exact Test (and Kolmogorov-Smirnov for evaluation, not described)
 resultFisher <- runTest(AD_GOdata, algorithm = "classic", statistic = "fisher")
 resultKS <- runTest(AD_GOdata, algorithm = "classic", statistic = "ks")
+resultKS.elim <- runTest(AD_GOdata, algorithm = "elim", statistic = "ks")
 
 # 12. Compare the tests (not described)
 #pvalFis <- score(resultFisher)
@@ -170,7 +172,7 @@ resultKS <- runTest(AD_GOdata, algorithm = "classic", statistic = "ks")
 
 # 13. Create GO terms tree
 allRes <- GenTable(AD_GOdata, classic = resultFisher, KS = resultKS, orderBy = "classic", topNodes = 30)
-showSigOfNodes(AD_GOdata,score(resultFisher),firstSigNodes = 5, useInfo = "all")
+showSigOfNodes(AD_GOdata,score(resultKS.elim),firstSigNodes = 5, useInfo = "all")
 printGraph(AD_GOdata,resultFisher,firstSigNodes = 5, fn.prefix = "AD1_GSE110226", useInfo = "all", pdfSW = TRUE)
 
 # 14. Create text file for the correspondence GO terms - genes (this file is mandatory for the script two)
